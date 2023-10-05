@@ -13,9 +13,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-
-
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @RunWith(SpringRunner.class)
@@ -35,5 +33,11 @@ public class CoursebookerApplicationTests {
 	@Test
 	public void canGetCustomersByCourse() {
 		assertEquals(2, customerRepository.findByBookingsCourseNameIgnoreCase("Python Intro").size());
+	}
+
+	@Test
+	public void canFindCoursesByCustomer() {
+		System.out.println(courseRepository.findByBookingsCustomerName("Geraldine"));
+		assertNotNull(courseRepository.findByBookingsCustomerName("Geraldine"));
 	}
 }

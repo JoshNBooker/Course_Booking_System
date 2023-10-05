@@ -31,7 +31,7 @@ public class CustomerController {
         if (name == null) {
             return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.NOT_FOUND);
         } else {
-            return new ResponseEntity<>(customerRepository.findByBookingsCourseName(name), HttpStatus.FOUND);
+            return new ResponseEntity<>(customerRepository.findByBookingsCourseNameIgnoreCase(name), HttpStatus.FOUND);
         }
     }
 

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import java.awt.print.Book;
 
 @Profile("!test")
-@Component //comment out after first seed
+//@Component //comment out after first seed
 public class DataLoader implements ApplicationRunner {
 
     @Autowired

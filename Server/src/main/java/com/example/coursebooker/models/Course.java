@@ -1,6 +1,9 @@
 package com.example.coursebooker.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "courses")
@@ -12,6 +15,9 @@ public class Course {
     private String name;
     private String town;
     private int starRating;
+    @OneToMany(mappedBy = "course", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"course"})
+    private List<Booking> bookings;
 
     public Course(String name, String town, int starRating) {
         this.name = name;

@@ -42,6 +42,10 @@ public class Customer {
         return dateOfBirth;
     }
 
+    public int getAge() {
+        return 2023 - Integer.parseInt(dateOfBirth.substring(0,4));
+    }
+
     public Long getId() {
         return id;
     }

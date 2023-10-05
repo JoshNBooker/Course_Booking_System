@@ -46,4 +46,9 @@ public class CoursebookerApplicationTests {
 	public void canGetBookingByDate() {
 		assertEquals(1, bookingRepository.findBookingByDate("11/11/2023").size());
 	}
+
+	@Test
+	public void canGetCustomerByTownAndCourse() {
+		assertEquals(1, customerRepository.findByAgeEqualsAndTownIgnoreCaseAndBookingsCourseNameIgnoreCase(18, "Edinburgh", "JavaScript For Babies").size());
+	}
 }

@@ -3,6 +3,7 @@ package com.example.coursebooker.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,7 @@ public class Customer {
     private String town;
     @Column(name = "date_of_birth")
     private String dateOfBirth;
-    @OneToMany(mappedBy = "customers", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"customer"})
     private List<Booking> bookings;
     @Id
@@ -25,6 +26,7 @@ public class Customer {
         this.name = name;
         this.town = town;
         this.dateOfBirth = dateOfBirth;
+        this.bookings = new ArrayList<>();
     }
     public Customer(){}
 
@@ -58,5 +60,13 @@ public class Customer {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

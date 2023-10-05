@@ -9,8 +9,21 @@ function App() {
     town: string;
     starRating: number;
   }
+  interface Customer {
+    id: number;
+    name: string;
+    town: string;
+    dateOfBirth: string;
+    bookings: Booking[]
+  }
+  interface Booking {
+    id: number;
+    date: string;
+    course: Course;
+  }
 
-  const [courses, setCourses] = useState<Course[]>()
+  const [courses, setCourses] = useState<Course[]>([])
+  const [customers, setCustomers] = useState<Customer[]>([])
 
   const BASE_URL: string = "http://localhost:8080/"
 
@@ -19,9 +32,13 @@ function App() {
       .then((res) => res.json())
       .then((data) => setCourses(data))
   }
+  const fetchCustomers = () => {
+    fetch(BASE_URL + "customers").then((res) => res.json()).then((data) => setCustomers(data))
+  }
 
   useEffect(() => {
-    fetchCourses()
+    fetchCourses();
+    fetchCustomers();
   }, [])
 
   console.log(courses)
@@ -42,6 +59,16 @@ function App() {
   
   return (
     <>
+      <div>
+        <h1>Customers: </h1>
+        {customers.map((customer) => (
+          <ul key={customer.id}>
+            <li>
+              <b>{customer.name}</b>
+            </li>
+          </ul>
+        ))}
+      </div>
     <p>hello there</p>
     {courseNodes}
     </>

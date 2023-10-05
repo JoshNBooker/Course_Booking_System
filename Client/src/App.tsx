@@ -42,9 +42,23 @@ function App() {
   }, [])
 
   console.log(courses)
-  console.log(customers)
+
+  const courseNodes = courses?.map((course, index) => {
+    let rating: string = ""
+    for (let i = 0; i < course.starRating; i++) {
+      rating += "⭐"
+    }
+    return (
+      <div key={index}>
+        <h2>{course.name}</h2>
+        <h3>{course.town}</h3>
+        <div>{rating}</div>
+      </div>
+    )
+  })
   
   return (
+    <>
       <div>
         <h1>Customers: </h1>
         {customers.map((customer) => (
@@ -55,7 +69,10 @@ function App() {
           </ul>
         ))}
       </div>
-    );
+    <p>hello there</p>
+    {courseNodes}
+    </>
+  )
 }
 
 export default App

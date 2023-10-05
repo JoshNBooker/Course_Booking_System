@@ -36,4 +36,14 @@ public class CoursebookerApplicationTests {
 	public void canGetCustomersByCourse() {
 		assertEquals(2, customerRepository.findByBookingsCourseNameIgnoreCase("Python Intro").size());
 	}
+
+	@Test
+	public void canGetCourseByRating() {
+		assertEquals(4, courseRepository.findCourseByStarRating(5).size());
+	}
+
+	@Test
+	public void canGetBookingByDate() {
+		assertEquals(1, bookingRepository.findBookingByDate("11/11/2023").size());
+	}
 }

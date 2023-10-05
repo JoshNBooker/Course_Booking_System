@@ -13,34 +13,26 @@ public class Booking {
     @ManyToOne
     @JsonIgnoreProperties({"booking"})
     @JoinColumn(name = "course_id", nullable = false)
-    private Long course_id;
+    private Course course;
     @ManyToOne
     @JsonIgnoreProperties({"booking"})
     @JoinColumn(name = "customer_id", nullable = false)
-    private Long customer_id;
+    private Customer customer;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Booking(String date, Long course_id, Long customer_id) {
+    public Booking(String date, Course course, Customer customer) {
         this.date = date;
-        this.course_id = course_id;
-        this.customer_id = customer_id;
+        this.course = course;
+        this.customer = customer;
     }
 
     public Booking(){}
 
     public String getDate() {
         return date;
-    }
-
-    public Long getCourse_id() {
-        return course_id;
-    }
-
-    public Long getCustomer_id() {
-        return customer_id;
     }
 
     public Long getId() {
@@ -51,15 +43,23 @@ public class Booking {
         this.date = date;
     }
 
-    public void setCourse_id(Long course_id) {
-        this.course_id = course_id;
-    }
-
-    public void setCustomer_id(Long customer_id) {
-        this.customer_id = customer_id;
-    }
-
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 }

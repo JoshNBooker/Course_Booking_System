@@ -1,5 +1,7 @@
 package com.example.coursebooker.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class Customer {
     @Column(name = "date_of_birth")
     private String dateOfBirth;
     @OneToMany(mappedBy = "customers", fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"customer"})
     private List<Booking> bookings;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

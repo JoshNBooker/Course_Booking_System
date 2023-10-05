@@ -53,4 +53,14 @@ public class CoursebookerApplicationTests {
 		assertEquals(1, bookingRepository.findBookingByDate("11/11/2023").size());
 
 	}
+	@Test
+	public void canGetAllCustomersInAGivenTownForAGivenCourse(){
+		assertEquals(1, customerRepository.findByTownAndBookingsCourseNameIgnoreCase("Edinburgh", "Polymorphism").size());
+	}
+	@Test
+	public void canGetAllCustomersByTownAndCourse(){
+		System.out.println(customerRepository.findByTownAndBookingsCourseNameIgnoreCase("Edinburgh", "polymorphism"));
+		assertEquals(1, customerRepository.findByTownAndBookingsCourseNameIgnoreCase("Edinburgh", "polymorphism").size());
+	}
+
 }

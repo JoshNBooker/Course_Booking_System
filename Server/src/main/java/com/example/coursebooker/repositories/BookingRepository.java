@@ -1,6 +1,7 @@
 package com.example.coursebooker.repositories;
 
 import com.example.coursebooker.models.Booking;
+import com.example.coursebooker.models.Course;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

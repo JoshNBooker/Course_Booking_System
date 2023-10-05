@@ -27,14 +27,19 @@ public class CustomerController {
         return new ResponseEntity<>(customer, HttpStatus.CREATED);
     }
     @GetMapping(value = "/customers/courses")
-    public ResponseEntity getCustomersByCourse(@RequestParam(name="course", required = false) String name){
-        if (name == null) {
+    public ResponseEntity getCustomersByCourse(@RequestParam(name="course", required = false) String course,
+                                               @RequestParam(name="town", required = false)String town,
+                                               @RequestParam(name="name", required = false) String name){
+        if (course != null) {
+            return new ResponseEntity<>(customerRepository.findByBookingsCourseNameIgnoreCase(course), HttpStatus.FOUND);
+        } if (town != null) {
+            return new ResponseEntity<>(customerRepository.findByTownIgnoreCase(town), HttpStatus.FOUND);
+        } if (name !=null) {
+            return new ResponseEntity<>(customerRepository.findByNameIgnoreCase(name), HttpStatus.FOUND);
+        } if (town != null && course != null ) {
+            return new ResponseEntity<>(customerRepository.findByTownAndBookingsCourseNameIgnoreCase(town, course), HttpStatus.FOUND);
+        }else {
             return new ResponseEntity<>(customerRepository.findAll(), HttpStatus.NOT_FOUND);
-        } else {
-            return new ResponseEntity<>(customerRepository.findByBookingsCourseNameIgnoreCase(name), HttpStatus.FOUND);
         }
     }
-
-
-
 }

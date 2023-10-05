@@ -36,4 +36,14 @@ public class CoursebookerApplicationTests {
 	public void canGetCustomersByCourse() {
 		assertEquals(2, customerRepository.findByBookingsCourseNameIgnoreCase("Python Intro").size());
 	}
+	@Test
+	public void canGetAllCustomersInAGivenTownForAGivenCourse(){
+		assertEquals(1, customerRepository.findByTownAndBookingsCourseNameIgnoreCase("Edinburgh", "Polymorphism").size());
+	}
+	@Test
+	public void canGetAllCustomersByTownAndCourse(){
+		System.out.println(customerRepository.findByTownAndBookingsCourseNameIgnoreCase("Edinburgh", "polymorphism"));
+		assertEquals(1, customerRepository.findByTownAndBookingsCourseNameIgnoreCase("Edinburgh", "polymorphism").size());
+	}
+
 }

@@ -3,6 +3,7 @@ package com.example.coursebooker.controllers;
 import com.example.coursebooker.models.Booking;
 import com.example.coursebooker.models.Course;
 import com.example.coursebooker.repositories.CourseRepository;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +19,12 @@ public class CourseController {
     CourseRepository courseRepository;
 
     @GetMapping(value = "/courses")
-    public List<Course> getAllCourses() {
-        return courseRepository.findAll();
+    public ResponseEntity <List<Course>> getAllCourses(@RequestParam(name="customerName", required = false) String customerName) {
+        if (customerName != null) {
+            return new ResponseEntity<>(courseRepository.findByBookingsCustomerName(customerName), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(courseRepository.findAll(), HttpStatus.OK);
+        }
     }
 
     @GetMapping(value = "/courses/{id}")

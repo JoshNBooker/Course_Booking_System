@@ -57,13 +57,13 @@ public class DataLoader implements ApplicationRunner {
         courseRepository.save(course9);
 
 
-        Customer customer1 = new Customer("Gareth", "Plymouth", "23/05/1967");
+        Customer customer1 = new Customer("Gareth", "Plymouth", "1967-05-23");
         customerRepository.save(customer1);
 
-        Customer customer2 = new Customer("Kenny", "Glasgow", "04/02/1988");
+        Customer customer2 = new Customer("Kenny", "Glasgow", "1988-02-04");
         customerRepository.save(customer2);
 
-        Customer customer3 = new Customer("Geraldine", "Edinburgh", "30/01/2000");
+        Customer customer3 = new Customer("Geraldine", "Edinburgh", "2000-01-30");
         customerRepository.save(customer3);
 
 

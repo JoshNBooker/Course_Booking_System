@@ -3,8 +3,7 @@ package com.example.coursebooker.controllers;
 import com.example.coursebooker.models.Booking;
 import com.example.coursebooker.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +17,22 @@ public class BookingController {
     public List<Booking> getAllBookings() {
         return bookingRepository.findAll();
     }
+
+    @GetMapping(value = "/bookings/{id}")
+    public List<Booking> getBookingByDate(@PathVariable String date) {
+        return bookingRepository.findBookingByDate(date);
+    }
+
+    @PostMapping (value = "/bookings")
+    public Booking createBooking(@RequestBody Booking booking) {
+        bookingRepository.save(booking);
+        return booking;
+    }
+
+    @DeleteMapping(value = "/bookings/{id}")
+    public void deleteBooking(@PathVariable Long id) {
+        bookingRepository.deleteById(id);
+    }
+
 
 }

@@ -20,7 +20,7 @@ public class BookingController {
 
     @GetMapping(value = "/bookings/{id}")
     public List<Booking> getBookingByDate(@PathVariable String date) {
-        return bookingRepository.findByDate(date);
+        return bookingRepository.findBookingByDate(date);
     }
 
     @PostMapping (value = "/bookings")
